@@ -10,7 +10,7 @@ import java.time.Instant
 @Component
 class OutboxEventPublisher(
     private val eventBus: EventBus,
-    private val outboxEventRepository: OutboxEventRepo,
+    private val оutboxEventRepo: OutboxEventRepo,
 ) {
 
     private val log = LoggerFactory.getLogger(this::class.java)
@@ -18,13 +18,13 @@ class OutboxEventPublisher(
     @Scheduled(cron = "\${outbox.schedule.cron}")
     @Transactional
     fun publishEvents() {
-        outboxEventRepository.findAllNotPublished().forEach { event ->
+        оutboxEventRepo.findAllNotPublished().forEach { event ->
             try {
                 eventBus.sendEvent(event)
 
                 event.apply {
                     markPublished(Instant.now())
-                    outboxEventRepository.save(this)
+                    оutboxEventRepo.save(this)
                 }
             } catch (e: Exception) {
                 log.error("Error sending event with id=${event.id}", e)

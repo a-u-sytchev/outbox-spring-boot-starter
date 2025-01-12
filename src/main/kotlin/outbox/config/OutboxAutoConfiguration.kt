@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableScheduling
+import outbox.model.event.EventBus
 import outbox.model.event.OutboxEventPublisher
 import outbox.model.event.OutboxManager
 import outbox.model.event.entity.OutboxEventRepo
@@ -15,16 +16,17 @@ class OutboxAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     fun outboxService(
-        outboxEventRepository: OutboxEventRepo
+        outboxEventRepo: OutboxEventRepo,
     ): OutboxManager {
-        return OutboxManager(outboxEventRepository)
+        return OutboxManager(outboxEventRepo)
     }
 
     @Bean
     @ConditionalOnMissingBean
     fun outboxEventPublisher(
-        outboxEventRepository: OutboxEventRepo
+        eventBus: EventBus,
+        outboxEventRepo: OutboxEventRepo,
     ): OutboxEventPublisher {
-        return OutboxEventPublisher(outboxEventRepository)
+        return OutboxEventPublisher(eventBus, outboxEventRepo)
     }
 }
