@@ -1,8 +1,10 @@
 plugins {
     val kotlinVersion = "2.0.20"
 
-    `maven-publish`
+    id("org.springframework.boot") version "3.1.4"
+    id("io.spring.dependency-management") version "1.1.3"
     kotlin("jvm") version kotlinVersion
+    `maven-publish`
 }
 
 group = "support"
@@ -35,6 +37,12 @@ publishing {
     }
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:3.1.4")
+    }
+}
+
 dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.4.1")
@@ -52,4 +60,11 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    enabled = false
+}
+tasks.jar {
+    enabled = true
 }
