@@ -3,16 +3,10 @@ plugins {
 
     `maven-publish`
     kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
-    id("org.springframework.boot") version "3.3.3"
-    kotlin("plugin.jpa") version kotlinVersion
-    kotlin("kapt") version kotlinVersion
-    kotlin("plugin.serialization") version kotlinVersion
 }
-apply(plugin = "io.spring.dependency-management")
 
 group = "support"
-version = "1.0.1"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
@@ -43,14 +37,14 @@ publishing {
 
 dependencies {
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.4.1")
 
-    implementation("org.flywaydb:flyway-core:9.16.0")
+    implementation("org.flywaydb:flyway-core:11.1.1")
 
-    implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.springframework.kafka:spring-kafka:3.3.1")
 
-    implementation("org.springframework.boot:spring-boot-starter")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter:3.4.1")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.4.1")
 }
 
 tasks.test {
