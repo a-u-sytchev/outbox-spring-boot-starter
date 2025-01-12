@@ -1,0 +1,6 @@
+outbox:
+  schedule:
+    cron: "0 * * * * *"
+  gc:
+    cron: "0 0 * * *"
+    ttl: 1d
