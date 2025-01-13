@@ -4,11 +4,12 @@ plugins {
     id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.3"
     kotlin("jvm") version kotlinVersion
+    kotlin("plugin.serialization") version kotlinVersion
     `maven-publish`
 }
 
 group = "support"
-version = "1.0.4"
+version = "1.0.5"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
@@ -21,7 +22,7 @@ publishing {
             from(components["java"])
             groupId = "ru.a-u-sytchev"
             artifactId = "outbox-spring-boot-starter"
-            version = "1.0.4"
+            version = "1.0.5"
         }
     }
     repositories {
@@ -52,6 +53,9 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:3.3.1")
 
     implementation("org.springframework.boot:spring-boot-starter:3.4.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test:3.4.1")
 }
 

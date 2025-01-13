@@ -3,5 +3,5 @@ create table if not exists outbox_event (
     created_at   timestamp with time zone not null,
     published_at timestamp with time zone,
     topic        varchar(255)             not null,
-    payload      bytea
+    payload      text
 );

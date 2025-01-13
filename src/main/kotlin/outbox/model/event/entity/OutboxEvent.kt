@@ -14,7 +14,7 @@ class OutboxEvent(
     val topic: String,
 
     @Column(name = "payload", nullable = false)
-    val payload: ByteArray?,
+    val payload: String?,
 ) {
     @Id
     @GeneratedValue
