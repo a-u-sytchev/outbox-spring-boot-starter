@@ -19,10 +19,10 @@ jobs:
           distribution: temurin
           server-id: github
           server-username: GITHUB_ACTOR
-          server-password: ${{ secret.PAT_TOKEN }}
+          server-password: ${{ secrets.PAT_TOKEN }}
 
       - name: Build and publish
         run: ./gradlew clean build publish
         env:
-          USERNAME: ${{ secret.USERNAME }}
-          PAT_TOKEN: ${{ secret.PAT_TOKEN }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
