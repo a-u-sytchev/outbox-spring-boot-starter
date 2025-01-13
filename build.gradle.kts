@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "support"
-version = "1.0.3"
+version = "1.0.4"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
@@ -21,7 +21,7 @@ publishing {
             from(components["java"])
             groupId = "ru.a-u-sytchev"
             artifactId = "outbox-spring-boot-starter"
-            version = "1.0.3"
+            version = "1.0.4"
         }
     }
     repositories {
