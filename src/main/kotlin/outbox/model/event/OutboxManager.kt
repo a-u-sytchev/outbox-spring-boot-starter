@@ -10,7 +10,7 @@ class OutboxManager(
     private val outboxEventRepo: OutboxEventRepo,
 ) {
     @Transactional
-    fun createEvent(topic: String, payload: ByteArray? = null) {
+    fun createEvent(topic: String, payload: String? = null) {
         outboxEventRepo.save(
             OutboxEvent(
                 topic = topic,
